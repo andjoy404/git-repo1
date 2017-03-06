@@ -1,0 +1,43 @@
+---
+
+- hosts: log-serv
+  gather_facts: yes
+  roles:
+    - java-1.7
+
+  tasks:
+   - name: Import elasticsearch apt key
+     apt_key: url=http://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
+
+   - name: Add elasticsearch apt repo 
+     apt_repository: repo={{item}} state=present
+     with_items: 
+      - 'deb https://artifacts.elastic.co/packages/5.x/apt stable main'
+      - 'deb https://packages.elastic.co/beats/apt stable main'
+
+   # - name: Update package list
+   #   apt: update_cache=yes
+
+   - name: Install elasticsearch & filebeat
+     apt: name={{item}} state=present update_cache=yes cache_valid_time=3600
+     with_items:
+      - elasticsearch
+      - filebeat
+
+   - name: create folder
+     file: path={{ item }} state=directory mode=0755 owner=elasticsearch
+     with_items:
+      - /log/elastic-data/tmp
+      - /log/elastic-data/plugins
+
+   - name: config elasticsearch
+     template: src="elastic.j2" dest="/etc/elasticsearch/elasticsearch.yml"
+
+   - name: config filebeat
+     template: src="filebeat.j2" dest="/etc/filebeat/filebeat.yml"
+
+   - name: Start service
+     service: name={{item}} state=started enabled=true
+     with_items:
+      - elasticsearch
+      - filebeat
