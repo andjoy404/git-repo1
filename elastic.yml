@@ -15,8 +15,8 @@
       - 'deb https://artifacts.elastic.co/packages/5.x/apt stable main'
       - 'deb https://packages.elastic.co/beats/apt stable main'
 
-   # - name: Update package list
-   #   apt: update_cache=yes
+    - name: Update package list
+      apt: update_cache=yes
 
    - name: Install elasticsearch & filebeat
      apt: name={{item}} state=present update_cache=yes cache_valid_time=3600
