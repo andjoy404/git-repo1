@@ -1,0 +1,11 @@
+=== 16.03.2017 ===
+static			2017031601
+dubbo-trade		+ +
+dubbo-schedule		+
+
+appMainsite		+ + +
+appMember		+ + +
+appMobile		+ + - - + <-- back to step 1
+appProduct		+ + +
+appTrade		+ + - - + <-- back to step 1
+appMerchant		+ + +
