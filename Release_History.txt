@@ -32,3 +32,8 @@ trade			+ + - + + |
 merchant		+ + |
 apiSeller		+ + |
 apiAndorid		+ + - + + |
+
+== 24.03.2017 ==
+static			2017032401
+appMainsite		+ + + |
+appMobile		+ + 
