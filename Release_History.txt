@@ -36,4 +36,14 @@ apiAndorid		+ + - + + |
 == 24.03.2017 ==
 static			2017032401
 appMainsite		+ + + |
-appMobile		+ + 
+appMobile		+ + + |
+
+== 27.03.2017 ==
+static			env3
+mainsite 		env3
+product 		env3
+trade 			env3
+member 			env3
+mobile 			env3
+merchant 		env3
+op 				env3
